@@ -52,5 +52,5 @@ object ScalaLogging {
 }
 
 object Enumeratum {
-  val version = "com.beachape" %% "enumeratum-circe" % "1.5.21"
+  val version = "com.beachape" %% "enumeratum" % "1.5.13"
 }
