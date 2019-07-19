@@ -52,26 +52,30 @@ object Plan extends Enum[Plan] {
 
   // TODO 17歳で大学生の人もいて、年齢で制限すると例外に対応できない可能性あり？
   case object UniversityStudent extends Plan {
-    def ageLimit(age: Age): Boolean = true
+    def ageLimit(age: Age): Boolean =
+      age >= Age(18)
     override val remarks            = Option("学生証をご提示下さい。")
   }
   case object HighSchoolStudent extends Plan {
-    def ageLimit(age: Age): Boolean = true
+    def ageLimit(age: Age): Boolean =
+      age <= Age(17) && age >= Age(15)
     override val remarks            = Option("生徒手帳をご提示下さい。")
   }
   case object MiddleSchoolStudent extends Plan {
-    def ageLimit(age: Age): Boolean = true
+    def ageLimit(age: Age): Boolean =
+      age <= Age(14) && age >= Age(12)
     override val remarks            = Option("生徒手帳をご提示下さい。")
   }
   case object PrimarySchoolChildren extends Plan {
-    def ageLimit(age: Age): Boolean = true
+    def ageLimit(age: Age): Boolean =
+      age <= Age(11) && age >= Age(6)
   }
   case object HandicappedMoreThanStudents extends Plan {
-    def ageLimit(age: Age): Boolean = true
+    def ageLimit(age: Age): Boolean = ???
     override val remarks            = Option("同伴者１名様も同額。手帳をご提示下さい。")
   }
   case object HandicappedUnderHighSchoolStudents extends Plan {
-    def ageLimit(age: Age): Boolean = true
+    def ageLimit(age: Age): Boolean = ???
     override val remarks            = Option("同伴者１名様も同額。手帳をご提示下さい。")
   }
 

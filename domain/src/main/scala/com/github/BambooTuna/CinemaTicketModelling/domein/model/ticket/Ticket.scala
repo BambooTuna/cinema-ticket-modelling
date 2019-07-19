@@ -8,12 +8,18 @@ case class Ticket(price: TicketPrice)
 
 object Ticket {
 
-  def purchase(age: Age, plan: Plan, date: ScreeningDate): Ticket = {
-    //年齢制限
-    require(plan.ageLimit(age))
-
-    //TODO 最安検索機能があるといい？
-    order(plan, date)
+  def purchase(age: Age, plans: Seq[Plan], date: ScreeningDate): Ticket = {
+    plans
+      .filter(
+        //年齢制限
+        _.ageLimit(age)
+      )
+      .map(
+        order(_, date)
+      ).minBy(
+      //TODO ない場合の処理を追加する
+      _.price
+    )
   }
 
   private def order(plan: Plan, date: ScreeningDate): Ticket =
